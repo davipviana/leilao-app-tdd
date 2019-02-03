@@ -1,10 +1,11 @@
 package com.davipviana.leilao.model
 
 import java.io.Serializable
-import java.util.ArrayList
+import java.util.*
+import kotlin.math.min
 
 class Leilao(val descricao: String) : Serializable {
-    private val lances: List<Lance>
+    private val lances = ArrayList<Lance>()
 
     var maiorLance: Double? = null
         private set
@@ -12,29 +13,27 @@ class Leilao(val descricao: String) : Serializable {
     var menorLance: Double? = null
         private set
 
-    init {
-        this.lances = ArrayList()
-    }
-
     fun proporLance(lance: Lance) {
+        lances.add(lance)
+        lances.sort()
         calcularMaiorLance(lance)
         calcularMenorLance(lance)
     }
 
     private fun calcularMenorLance(lance: Lance) {
-        val menorLance = this.menorLance;
+        val menorLance = this.menorLance
         if (menorLance == null || lance.valor < menorLance)
             this.menorLance = lance.valor
     }
 
     private fun calcularMaiorLance(lance: Lance) {
-        val maiorLance = this.maiorLance;
+        val maiorLance = this.maiorLance
         if (maiorLance == null || lance.valor > maiorLance)
             this.maiorLance = lance.valor
     }
 
     fun getTresMaioresLances(): List<Lance> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return lances.subList(0, min(3, lances.size))
     }
 
 }

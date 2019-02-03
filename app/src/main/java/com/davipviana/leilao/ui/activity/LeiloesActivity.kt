@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import com.davipviana.leilao.R
+import com.davipviana.leilao.model.Lance
 import com.davipviana.leilao.model.Leilao
-import com.davipviana.leilao.ui.recyclerview.adapter.ListaLeilaoAdapter
+import com.davipviana.leilao.model.Usuario
+import com.davipviana.leilao.ui.recyclerview.adapter.LeiloesAdapter
 import java.util.*
 
 class LeiloesActivity : AppCompatActivity() {
@@ -14,10 +16,10 @@ class LeiloesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leiloes)
-        val adapter = ListaLeilaoAdapter(this, leiloesDeExemplo())
+        val adapter = LeiloesAdapter(this, leiloesDeExemplo())
         val recyclerView = findViewById<RecyclerView>(R.id.leiloes_recyclerview)
         recyclerView.adapter = adapter
-        adapter.setOnItemClickListener(object : ListaLeilaoAdapter.OnItemClickListener {
+        adapter.setOnItemClickListener(object : LeiloesAdapter.OnItemClickListener {
             override fun onItemClick(leilao: Leilao?) {
                 val vaiParaLancesLeilao = Intent(this@LeiloesActivity, DetalhesLeilao::class.java)
                 vaiParaLancesLeilao.putExtra("leilao", leilao)
@@ -28,6 +30,7 @@ class LeiloesActivity : AppCompatActivity() {
 
     private fun leiloesDeExemplo(): List<Leilao> {
         val console = Leilao("Console")
+        console.proporLance(Lance(Usuario("Jose"), 200.0))
         return ArrayList<Leilao>(
             Arrays.asList<Leilao>(
                 console

@@ -29,12 +29,23 @@ class LeiloesActivity : AppCompatActivity() {
     }
 
     private fun leiloesDeExemplo(): List<Leilao> {
-        val console = Leilao("Console")
-        console.proporLance(Lance(Usuario("Jose"), 200.0))
-        console.proporLance(Lance(Usuario("João"), 300.0))
+        val leilaoConsole = Leilao("Console")
+        leilaoConsole.proporLance(Lance(Usuario("Jose"), 200.0))
+        leilaoConsole.proporLance(Lance(Usuario("João"), 300.0))
+
+        val leilaoComputador = Leilao("Computador")
+        leilaoComputador.proporLance(Lance(Usuario("Maria"), 1000.0))
+
+        val leilaoCarro = Leilao("Carro")
+        leilaoCarro.proporLance(Lance(Usuario("Joana"), 10000.0))
+        leilaoCarro.proporLance(Lance(Usuario("Mario"), 15000.0))
+        leilaoCarro.proporLance(Lance(Usuario("Ana"), 17000.0))
+
         return ArrayList<Leilao>(
             Arrays.asList<Leilao>(
-                console
+                leilaoConsole,
+                leilaoComputador,
+                leilaoCarro
             )
         )
     }

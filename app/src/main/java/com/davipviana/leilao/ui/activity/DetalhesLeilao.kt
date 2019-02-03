@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.davipviana.leilao.R
 import com.davipviana.leilao.model.Leilao
+import java.lang.StringBuilder
 
 class DetalhesLeilao : AppCompatActivity() {
 
@@ -22,6 +23,13 @@ class DetalhesLeilao : AppCompatActivity() {
 
             val menorLance = findViewById<TextView>(R.id.lances_leilao_menor_lance)
             menorLance.text = leilao.menorLance?.toString()
+
+            val maioresLances = findViewById<TextView>(R.id.lances_leilao_maiores_lances)
+            val sb = StringBuilder()
+            for(l in leilao.getTresMaioresLances()) {
+                sb.appendln(l.valor)
+            }
+            maioresLances.text = sb.toString()
         }
     }
 }

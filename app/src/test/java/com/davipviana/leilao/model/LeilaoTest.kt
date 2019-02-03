@@ -22,7 +22,7 @@ class LeilaoTest {
 
         val maiorLanceObtido = leilao.maiorLance
 
-        assertEquals(200.0, maiorLanceObtido)
+        assertEquals(200.0, maiorLanceObtido, 0.0001)
     }
 
     @Test
@@ -33,7 +33,7 @@ class LeilaoTest {
 
         val maiorLanceObtido = leilao.maiorLance
 
-        assertEquals(200.0, maiorLanceObtido)
+        assertEquals(200.0, maiorLanceObtido, 0.0001)
     }
 
     @Test
@@ -44,7 +44,7 @@ class LeilaoTest {
 
         val maiorLanceObtido = leilao.maiorLance
 
-        assertEquals(200.0, maiorLanceObtido)
+        assertEquals(200.0, maiorLanceObtido, 0.0001)
     }
 
     @Test
@@ -53,7 +53,7 @@ class LeilaoTest {
 
         val menorLanceObtido = leilao.menorLance
 
-        assertEquals(200.0, menorLanceObtido)
+        assertEquals(200.0, menorLanceObtido, 0.0001)
     }
 
     @Test
@@ -64,7 +64,7 @@ class LeilaoTest {
 
         val menorLanceObtido = leilao.menorLance
 
-        assertEquals(100.0, menorLanceObtido)
+        assertEquals(100.0, menorLanceObtido, 0.0001)
     }
 
     @Test
@@ -75,7 +75,7 @@ class LeilaoTest {
 
         val menorLanceObtido = leilao.menorLance
 
-        assertEquals(100.0, menorLanceObtido)
+        assertEquals(100.0, menorLanceObtido, 0.0001)
     }
 
     @Test
@@ -139,5 +139,19 @@ class LeilaoTest {
         assertEquals(800.0, lancesObtidos2[0].valor, 0.0001)
         assertEquals(700.0, lancesObtidos2[1].valor, 0.0001)
         assertEquals(500.0, lancesObtidos2[2].valor, 0.0001)
+    }
+
+    @Test
+    fun deve_DevolverValorZeroParaMaiorLance_QuandoNaoTiverLances() {
+        val maiorLanceObtido = leilao.maiorLance
+
+        assertEquals(0.0, maiorLanceObtido, 0.0001)
+    }
+
+    @Test
+    fun deve_DevolverValorZeroParaMenorLance_QuandoNaoTiverLances() {
+        val menorLanceObtido = leilao.menorLance
+
+        assertEquals(0.0, menorLanceObtido, 0.0001)
     }
 }

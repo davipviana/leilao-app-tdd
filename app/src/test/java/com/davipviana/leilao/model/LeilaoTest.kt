@@ -79,13 +79,16 @@ class LeilaoTest {
     }
 
     @Test
-    fun deve_DevolverTresMaioresLances_QuandoRecebeTresLances() {
-        leilao.proporLance(Lance(usuarioUm, 200.0))
-        leilao.proporLance(Lance(Usuario("Usuario 2"), 300.0))
+    fun deve_DevolverTresMaioresLancesOrdenados_QuandoRecebeTresLances() {
+        leilao.proporLance(Lance(usuarioUm, 300.0))
+        leilao.proporLance(Lance(Usuario("Usuario 2"), 200.0))
         leilao.proporLance(Lance(usuarioUm, 400.0))
 
         val lancesObtidos = leilao.getTresMaioresLances()
 
         assertEquals(3, lancesObtidos.size)
+        assertEquals(400.0, lancesObtidos[0].valor, 0.0001)
+        assertEquals(300.0, lancesObtidos[1].valor, 0.0001)
+        assertEquals(200.0, lancesObtidos[2].valor, 0.0001)
     }
 }

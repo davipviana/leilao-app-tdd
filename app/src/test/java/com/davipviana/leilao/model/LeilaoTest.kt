@@ -6,22 +6,19 @@ import org.junit.Assert.*
 
 class LeilaoTest {
 
+    private val leilao = Leilao("Console")
+    private val usuarioUm = Usuario("Usuario 1")
+
     @Test
     fun getDescricao_RecebeDescricaoNoConstrutor_RetornaDescricaoRecebida() {
-        // Criar cenario de teste
-        val leilao = Leilao("Console")
-
-        // Executar acao a ser testada
         val descricaoObtida = leilao.descricao
 
-        // Testar resultado esperado
         assertEquals("Console", descricaoObtida)
     }
 
     @Test
     fun getMaiorLance_UmLance_RetornaValorLance() {
-        val leilao = Leilao("Console")
-        leilao.proporLance(Lance(Usuario("Usuario A"), 200.0))
+        leilao.proporLance(Lance(usuarioUm, 200.0))
 
         val maiorLanceObtido = leilao.maiorLance
 
@@ -30,9 +27,9 @@ class LeilaoTest {
 
     @Test
     fun getMaiorLance_DoisLancesOrdemCrescente_RetornaMaiorValorLance() {
-        val leilao = Leilao("Console")
-        leilao.proporLance(Lance(Usuario("Usuario A"), 100.0))
-        leilao.proporLance(Lance(Usuario("Usuario B"), 200.0))
+        val usuarioDois = Usuario("Usuario 2")
+        leilao.proporLance(Lance(usuarioUm, 100.0))
+        leilao.proporLance(Lance(usuarioDois, 200.0))
 
         val maiorLanceObtido = leilao.maiorLance
 
@@ -41,9 +38,9 @@ class LeilaoTest {
 
     @Test
     fun getMaiorLance_DoisLancesOrdemDecrescente_RetornaMaiorValorLance() {
-        val leilao = Leilao("Console")
-        leilao.proporLance(Lance(Usuario("Usuario A"), 200.0))
-        leilao.proporLance(Lance(Usuario("Usuario B"), 100.0))
+        val usuarioDois = Usuario("Usuario 2")
+        leilao.proporLance(Lance(usuarioUm, 200.0))
+        leilao.proporLance(Lance(usuarioDois, 100.0))
 
         val maiorLanceObtido = leilao.maiorLance
 
@@ -52,8 +49,7 @@ class LeilaoTest {
 
     @Test
     fun getMenorLance_UmLance_RetornaValorLance() {
-        val leilao = Leilao("Console")
-        leilao.proporLance(Lance(Usuario("Usuario A"), 200.0))
+        leilao.proporLance(Lance(usuarioUm, 200.0))
 
         val menorLanceObtido = leilao.menorLance
 
@@ -62,9 +58,9 @@ class LeilaoTest {
 
     @Test
     fun getMenorLance_DoisLancesOrdemCrescente_RetornaMenorValorLance() {
-        val leilao = Leilao("Console")
-        leilao.proporLance(Lance(Usuario("Usuario A"), 100.0))
-        leilao.proporLance(Lance(Usuario("Usuario B"), 200.0))
+        val usuarioDois = Usuario("Usuario 2")
+        leilao.proporLance(Lance(usuarioUm, 100.0))
+        leilao.proporLance(Lance(usuarioDois, 200.0))
 
         val menorLanceObtido = leilao.menorLance
 
@@ -73,9 +69,9 @@ class LeilaoTest {
 
     @Test
     fun getMaiorLance_DoisLancesOrdemDecrescente_RetornaMenorValorLance() {
-        val leilao = Leilao("Console")
-        leilao.proporLance(Lance(Usuario("Usuario A"), 200.0))
-        leilao.proporLance(Lance(Usuario("Usuario B"), 100.0))
+        val usuarioDois = Usuario("Usuario 2")
+        leilao.proporLance(Lance(usuarioUm, 200.0))
+        leilao.proporLance(Lance(usuarioDois, 100.0))
 
         val menorLanceObtido = leilao.menorLance
 

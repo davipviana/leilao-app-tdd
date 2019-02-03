@@ -14,34 +14,45 @@ class Leilao(val descricao: String) : Serializable {
         private set
 
     fun proporLance(lance: Lance) {
-        if(lance.valor < maiorLance)
-            return
-
-        if(!lances.isEmpty()) {
-            if(lance.usuario == lances[0].usuario)
-                return
-
-            var cont = 0
-            for(l in lances) {
-                if(l.usuario == lance.usuario)
-                    cont++
-
-                if(cont == 5)
-                    return
-            }
-
-        }
+        if (verificarLanceInvalido(lance)) return
 
         lances.add(lance)
-        if(lances.size == 1) {
-            maiorLance = lance.valor
-            menorLance = lance.valor
-            return
-        }
+        if (carregarValoresExtremosNoPrimeiroLance(lance)) return
 
         lances.sort()
         calcularMaiorLance(lance)
         calcularMenorLance(lance)
+    }
+
+    private fun carregarValoresExtremosNoPrimeiroLance(lance: Lance): Boolean {
+        if (lances.size == 1) {
+            maiorLance = lance.valor
+            menorLance = lance.valor
+            return true
+        }
+        return false
+    }
+
+    private fun verificarLanceInvalido(lance: Lance): Boolean {
+        if(lance.valor < maiorLance) return true
+
+        if (!lances.isEmpty()) {
+            if (lance.usuario == lances[0].usuario) return true
+            if (verificarQuantidadeMaximaDeLances(lance)) return true
+        }
+        return false
+    }
+
+    private fun verificarQuantidadeMaximaDeLances(lance: Lance): Boolean {
+        var cont = 0
+        for (l in lances) {
+            if (l.usuario == lance.usuario)
+                cont++
+
+            if (cont == 5)
+                return true
+        }
+        return false
     }
 
     private fun calcularMenorLance(lance: Lance) {

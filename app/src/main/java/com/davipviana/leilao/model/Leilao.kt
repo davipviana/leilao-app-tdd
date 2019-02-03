@@ -14,15 +14,24 @@ class Leilao(val descricao: String) : Serializable {
         private set
 
     fun proporLance(lance: Lance) {
+        if(lance.valor < maiorLance)
+            return
+
+        if(!lances.isEmpty()) {
+            if(lance.usuario == lances[0].usuario)
+                return
+        }
+
         lances.add(lance)
         if(lances.size == 1) {
             maiorLance = lance.valor
             menorLance = lance.valor
-        } else {
-            lances.sort()
-            calcularMaiorLance(lance)
-            calcularMenorLance(lance)
+            return
         }
+
+        lances.sort()
+        calcularMaiorLance(lance)
+        calcularMenorLance(lance)
     }
 
     private fun calcularMenorLance(lance: Lance) {
@@ -39,6 +48,10 @@ class Leilao(val descricao: String) : Serializable {
 
     fun getTresMaioresLances(): List<Lance> {
         return lances.subList(0, min(3, lances.size))
+    }
+
+    fun getQuantidadeDeLances(): Int {
+        return this.lances.size
     }
 
 }

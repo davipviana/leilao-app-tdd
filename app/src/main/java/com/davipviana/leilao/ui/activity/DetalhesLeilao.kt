@@ -16,6 +16,12 @@ class DetalhesLeilao : AppCompatActivity() {
             val leilao = dadosRecebidos.getSerializableExtra("leilao") as Leilao
             val descricao = findViewById<TextView>(R.id.lances_leilao_descricao)
             descricao.text = leilao.descricao
+
+            val maiorLance = findViewById<TextView>(R.id.lances_leilao_maior_lance)
+            maiorLance.text = leilao.maiorLance?.toString()
+
+            val menorLance = findViewById<TextView>(R.id.lances_leilao_menor_lance)
+            menorLance.text = leilao.menorLance?.toString()
         }
     }
 }

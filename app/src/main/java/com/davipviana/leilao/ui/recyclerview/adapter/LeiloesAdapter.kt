@@ -44,7 +44,7 @@ class LeiloesAdapter(private val context: Context, private val leiloes: List<Lei
         fun vincular(leilao: Leilao) {
             this.leilao = leilao
             descricao.text = leilao.descricao
-            maiorLance.text = leilao.maiorLance?.toString()
+            maiorLance.text = leilao.maiorLance.toString()
         }
 
     }

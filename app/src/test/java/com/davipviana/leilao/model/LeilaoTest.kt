@@ -140,10 +140,8 @@ class LeilaoTest {
         assertEquals(0.0, menorLanceObtido, 0.0001)
     }
 
-    @Test
+    @Test(expected = RuntimeException::class)
     fun naoDeve_AdicionarLance_QuandoForMenorQueMaiorLance() {
-        expectedException.expect(RuntimeException::class.java)
-
         leilao.proporLance(Lance(usuarioUm, 500.00))
         leilao.proporLance(Lance(Usuario("Usuario 2"), 400.00))
     }

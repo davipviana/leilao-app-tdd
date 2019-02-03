@@ -33,4 +33,8 @@ class Leilao(val descricao: String) : Serializable {
             this.maiorLance = lance.valor
     }
 
+    fun getTresMaioresLances(): List<Lance> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

@@ -77,4 +77,15 @@ class LeilaoTest {
 
         assertEquals(100.0, menorLanceObtido)
     }
+
+    @Test
+    fun deve_DevolverTresMaioresLances_QuandoRecebeTresLances() {
+        leilao.proporLance(Lance(usuarioUm, 200.0))
+        leilao.proporLance(Lance(Usuario("Usuario 2"), 300.0))
+        leilao.proporLance(Lance(usuarioUm, 400.0))
+
+        val lancesObtidos = leilao.getTresMaioresLances()
+
+        assertEquals(3, lancesObtidos.size)
+    }
 }

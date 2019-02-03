@@ -20,6 +20,16 @@ class Leilao(val descricao: String) : Serializable {
         if(!lances.isEmpty()) {
             if(lance.usuario == lances[0].usuario)
                 return
+
+            var cont = 0
+            for(l in lances) {
+                if(l.usuario == lance.usuario)
+                    cont++
+
+                if(cont == 5)
+                    return
+            }
+
         }
 
         lances.add(lance)

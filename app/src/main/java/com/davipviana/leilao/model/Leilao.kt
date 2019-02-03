@@ -1,6 +1,7 @@
 package com.davipviana.leilao.model
 
 import java.io.Serializable
+import java.lang.RuntimeException
 import java.util.*
 import kotlin.math.min
 
@@ -34,10 +35,10 @@ class Leilao(val descricao: String) : Serializable {
     }
 
     private fun verificarLanceInvalido(lance: Lance): Boolean {
-        if(lance.valor < maiorLance) return true
+        if(lance.valor < maiorLance) throw RuntimeException()
 
         if (!lances.isEmpty()) {
-            if (lance.usuario == lances[0].usuario) return true
+            if (lance.usuario == lances[0].usuario) throw RuntimeException()
             if (verificarQuantidadeMaximaDeLances(lance)) return true
         }
         return false

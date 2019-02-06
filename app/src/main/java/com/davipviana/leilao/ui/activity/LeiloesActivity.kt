@@ -30,8 +30,9 @@ class LeiloesActivity : AppCompatActivity() {
 
     private fun leiloesDeExemplo(): List<Leilao> {
         val console = Leilao("Console")
-        console.proporLance(Lance(Usuario("Maria"), 300.0))
         console.proporLance(Lance(Usuario("Jose"), 200.0))
+        console.proporLance(Lance(Usuario("Maria"), 300.0))
+
         return ArrayList<Leilao>(
             Arrays.asList<Leilao>(
                 console

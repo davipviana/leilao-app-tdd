@@ -20,7 +20,7 @@ class Leilao(val descricao: String) : Serializable {
 
         if(maiorLance == null || lance.valor > maiorLance)
             this.maiorLance = lance.valor
-        else if(menorLance == null || lance.valor < menorLance)
+        if(menorLance == null || lance.valor < menorLance)
             this.menorLance = lance.valor
     }
 
